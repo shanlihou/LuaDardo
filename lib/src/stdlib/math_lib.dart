@@ -99,10 +99,10 @@ class MathLib{
 
   static int _min(LuaState ls){
     var n = ls.getTop(); /* number of arguments */
-    var imin = 1;        /* index of current maximum value */
+    var imin = 1;        /* index of current min value */
     ls.argCheck(n >= 1, 1, "value expected");
     for (var i = 2; i <= n; i++){
-      if(ls.compare(imin, i, CmpOp.luaOpLt)){
+      if(ls.compare(i, imin, CmpOp.luaOpLt)){
         imin = i;
       }
     }

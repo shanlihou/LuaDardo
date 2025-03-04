@@ -626,6 +626,14 @@ class LuaStateImpl implements LuaState, LuaVM {
         return LuaValue.typeOf(v);
       }
     }
+    if (t is Userdata) {
+      Object? v = t.metatable?.get(k);
+
+      if (raw || v != null || !t.hasMetafield("__index")) {
+        _stack!.push(v);
+        return LuaValue.typeOf(v);
+      }
+    }
 
     if (!raw) {
       Object? mf = _getMetafield(t, "__index");

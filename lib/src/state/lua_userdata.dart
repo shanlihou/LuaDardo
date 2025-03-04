@@ -7,4 +7,9 @@ class Userdata<T>{
   T? get data => _data.first;
 
   set data(T? data)=> _data.first = data;
+
+  bool hasMetafield(String fieldName) {
+    return metatable != null && metatable!.get(fieldName) != null;
+  }
+
 }
